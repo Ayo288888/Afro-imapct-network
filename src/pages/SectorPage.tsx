@@ -1,7 +1,8 @@
 
 import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { ArrowLeft, ExternalLink, MessageCircle, BarChart3, Users, TrendingUp, LucideIcon } from 'lucide-react';
+import { ArrowLeft, ExternalLink, MessageCircle, BarChart3, Users, TrendingUp, LucideIcon, Bot } from 'lucide-react';
+import NutritionChatbot from '../components/NutritionChatbot';
 
 const SECTOR_DATA: Record<string, { title: string, description: string[], googleForm: string }> = {
   education: {
@@ -55,6 +56,7 @@ export default function SectorPage() {
   const { id } = useParams();
   const navigate = useNavigate();
   const [isSubscribed, setIsSubscribed] = useState(false);
+  const [showChatbot, setShowChatbot] = useState(false);
 
   const data = id ? SECTOR_DATA[id] : null;
 
@@ -126,13 +128,23 @@ export default function SectorPage() {
               {id === 'health' && (
                 <div className="mt-6 pt-6 border-t border-gray-200">
                    <p className="mb-3 font-semibold text-gray-800">Exclusive Member Access:</p>
-                   <button
-                     onClick={() => window.open('https://wa.me/1234567890', '_blank')}
-                     className="w-full sm:w-auto px-6 py-3 bg-green-500 hover:bg-green-600 text-white font-bold rounded-lg shadow-md transition-colors flex items-center justify-center gap-2 mx-auto"
-                   >
-                     <MessageCircle size={20} />
-                     ENTER NUTRITION CHATBOT
-                   </button>
+                   <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                     <button
+                       onClick={() => window.open('https://wa.me/1234567890', '_blank')}
+                       className="w-full sm:w-auto px-6 py-3 bg-green-500 hover:bg-green-600 text-white font-bold rounded-lg shadow-md transition-colors flex items-center justify-center gap-2"
+                     >
+                       <MessageCircle size={20} />
+                       WHATSAPP CHATBOT
+                     </button>
+
+                     <button
+                       onClick={() => setShowChatbot(true)}
+                       className="w-full sm:w-auto px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-lg shadow-md transition-colors flex items-center justify-center gap-2"
+                     >
+                       <Bot size={20} />
+                       ASK NUTRITION ADVISOR
+                     </button>
+                   </div>
                 </div>
               )}
             </div>
@@ -170,6 +182,8 @@ export default function SectorPage() {
         </div>
 
       </div>
+
+      {showChatbot && <NutritionChatbot onClose={() => setShowChatbot(false)} />}
     </div>
   );
 }
