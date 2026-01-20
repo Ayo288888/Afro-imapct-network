@@ -1,33 +1,35 @@
-import { useState } from 'react';
-import HomePage from './pages/HomePage';
-import MainPage from './pages/MainPage';
-import LoginPage from './pages/LoginPage';
-import NutritionPage from './pages/NutritionPage';
+
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { AuthProvider } from './context/AuthContext';
+import ProtectedRoute from './components/ProtectedRoute';
+
+import LandingPage from './pages/LandingPage';
+import AuthPage from './pages/AuthPage';
+import Dashboard from './pages/Dashboard';
+import SectorPage from './pages/SectorPage';
+import AboutPage from './pages/AboutPage';
+import NotificationsPage from './pages/NotificationsPage';
+import ContactPage from './pages/ContactPage';
 
 function App() {
-  const [currentPage, setCurrentPage] = useState('home');
+  return (
+    <AuthProvider>
+      <Router>
+        <Routes>
+          <Route path="/" element={<LandingPage />} />
+          <Route path="/auth" element={<AuthPage />} />
 
-  const renderPage = () => {
-    switch (currentPage) {
-      case 'home':
-        return <HomePage onNavigate={setCurrentPage} />;
-      case 'main':
-      case 'about':
-      case 'solutions':
-      case 'team':
-      case 'news':
-      case 'contact':
-        return <MainPage onNavigate={setCurrentPage} />;
-      case 'login':
-        return <LoginPage onNavigate={setCurrentPage} />;
-      case 'nutrition':
-        return <NutritionPage onNavigate={setCurrentPage} />;
-      default:
-        return <HomePage onNavigate={setCurrentPage} />;
-    }
-  };
-
-  return <>{renderPage()}</>;
+          <Route element={<ProtectedRoute />}>
+            <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/sector/:id" element={<SectorPage />} />
+            <Route path="/about" element={<AboutPage />} />
+            <Route path="/notifications" element={<NotificationsPage />} />
+            <Route path="/contact" element={<ContactPage />} />
+          </Route>
+        </Routes>
+      </Router>
+    </AuthProvider>
+  );
 }
 
 export default App;
