@@ -130,7 +130,7 @@ export default function SectorPage() {
                    <p className="mb-3 font-semibold text-gray-800">Exclusive Member Access:</p>
                    <div className="flex flex-col sm:flex-row gap-4 justify-center">
                      <button
-                       onClick={() => window.open('https://wa.me/1234567890', '_blank')}
+                       onClick={() => window.open('https://wa.me/254700000000?text=Hello%2C%20I%20joined%20the%20Afro-Impact%20Health%20Sector%20and%20need%20assistance.', '_blank')}
                        className="w-full sm:w-auto px-6 py-3 bg-green-500 hover:bg-green-600 text-white font-bold rounded-lg shadow-md transition-colors flex items-center justify-center gap-2"
                      >
                        <MessageCircle size={20} />
