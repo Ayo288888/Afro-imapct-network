@@ -127,22 +127,24 @@ export default function SectorPage() {
 
               {id === 'health' && (
                 <div className="mt-6 pt-6 border-t border-gray-200">
-                   <p className="mb-3 font-semibold text-gray-800">Exclusive Member Access:</p>
-                   <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                     <button
-                       onClick={() => window.open('https://wa.me/254700000000?text=Hello%2C%20I%20joined%20the%20Afro-Impact%20Health%20Sector%20and%20need%20assistance.', '_blank')}
-                       className="w-full sm:w-auto px-6 py-3 bg-green-500 hover:bg-green-600 text-white font-bold rounded-lg shadow-md transition-colors flex items-center justify-center gap-2"
-                     >
-                       <MessageCircle size={20} />
-                       WHATSAPP CHATBOT
-                     </button>
+                   <h4 className="mb-2 text-lg font-bold text-gray-800">Choose Your Nutrition Assistant Platform:</h4>
+                   <p className="mb-6 text-sm text-gray-600">You can access our AI-powered nutrition advisor directly on this site or via WhatsApp.</p>
 
+                   <div className="flex flex-col sm:flex-row gap-4 justify-center">
                      <button
                        onClick={() => setShowChatbot(true)}
                        className="w-full sm:w-auto px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-lg shadow-md transition-colors flex items-center justify-center gap-2"
                      >
                        <Bot size={20} />
-                       ASK NUTRITION ADVISOR
+                       OPEN IN-SITE ASSISTANT
+                     </button>
+
+                     <button
+                       onClick={() => window.open('https://wa.me/254700000000?text=Hello%2C%20I%20joined%20the%20Afro-Impact%20Health%20Sector%20and%20need%20assistance.', '_blank')}
+                       className="w-full sm:w-auto px-6 py-3 bg-green-500 hover:bg-green-600 text-white font-bold rounded-lg shadow-md transition-colors flex items-center justify-center gap-2"
+                     >
+                       <MessageCircle size={20} />
+                       CHAT ON WHATSAPP
                      </button>
                    </div>
                 </div>
